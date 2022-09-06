@@ -37,13 +37,15 @@ public class Programa1 {
 
 				System.out.println("\n=== TEST 4: seller insert ====="); 
 				Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", LocalDate.now(), 4000.0, department);
-				sellerDao.insert(newSeller); System.out.println("Inserted! New id = " +
-						newSeller.getId());
+				sellerDao.insert(newSeller); 
+				System.out.println("Inserted! New id = " + newSeller.getId());
 
 
 				System.out.println("\n=== TEST 5: seller update ====="); 
-				seller = sellerDao.findById(1); seller.setName("Martha Waine");
-				sellerDao.update(seller); System.out.println("Update completed");
+				seller = sellerDao.findById(1);
+				seller.setName("Martha Waine");
+				sellerDao.update(seller); 
+				System.out.println("Update completed");
 
 
 				System.out.println("\n=== TEST 6: seller delete =====");

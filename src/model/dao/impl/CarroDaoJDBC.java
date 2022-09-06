@@ -32,7 +32,7 @@ public class CarroDaoJDBC implements CarroDao{
 		try {
 			st = conn.prepareStatement(
 					"INSERT INTO carro "
-					+ "(modelo, placa, cor, ano, dataAquisicao, carroId) "
+					+ "(mdelo, placa, cor, ano, dataAquisicao, carroId) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -71,16 +71,17 @@ public class CarroDaoJDBC implements CarroDao{
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"UPDATE Carro "
-					+ "SET modelo = ?, placa = ?, cor = ?, ano = ?, dataAquisicao = ?, carroID = ? "
-					+ "WHERE Id = ?");
+					"UPDATE carro "
+					+ "SET mdelo = ?, placa = ?, cor = ?, ano = ?, dataAquisicao = ? , carroId = ? "
+					+ "WHERE id = ?");
 			
 			st.setString(1, obj.getModelo());
 			st.setString(2, obj.getPlaca());
-			st.setString(3, String.valueOf(obj.getCor()));
+			st.setString(3, obj.getCor().toString());
 			st.setInt(4, obj.getAno());
 			st.setDate(5, Date.valueOf(obj.getDataAquisicao()));
 			st.setInt(6, obj.getCategoria().getId());
+			st.setInt(7, obj.getId());
 			
 			st.executeUpdate();
 		}
@@ -91,6 +92,7 @@ public class CarroDaoJDBC implements CarroDao{
 			DB.closeStatement(st);
 		}
 	}
+
 
 	@Override
 	public void deleteById(Integer id) {
@@ -116,9 +118,9 @@ public class CarroDaoJDBC implements CarroDao{
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT carro.*,categoria.descricao as Descricao, categoria.precoDiario as Preco_Diario "
+					"SELECT * "
 					+ "FROM carro INNER JOIN categoria "
-					+ "ON carro.carroId = categoria.Id "
+					+ "ON carro.carroId = categoria.id "
 					+ "WHERE carro.Id = ?");
 			
 			st.setInt(1, id);
@@ -142,7 +144,7 @@ public class CarroDaoJDBC implements CarroDao{
 	private Carro instantiateCarro(ResultSet rs, Categoria dep) throws SQLException {
 		Carro obj = new Carro();
 		obj.setId(rs.getInt("id"));
-		obj.setModelo(rs.getString("modelo"));
+		obj.setModelo(rs.getString("mdelo"));
 		obj.setPlaca(rs.getString("placa"));
 		obj.setCor(Cor.valueOf(rs.getString("cor")));
 		obj.setAno(rs.getInt("Ano"));
@@ -165,10 +167,9 @@ public class CarroDaoJDBC implements CarroDao{
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT carro.*,categoria.descricao as Descricao, categoria.precoDiario as Preco_Diario "
-					+ "FROM carro INNER JOIN categoria "
-					+ "ON carro.carroId = categoria.Id "
-					+ "ORDER BY modelo");
+					"SELECT * FROM carro INNER JOIN categoria "
+					+ "WHERE carro.carroId = categoria.id "
+					+ "ORDER BY carro.mdelo");
 			
 			rs = st.executeQuery();
 			
@@ -205,11 +206,11 @@ public class CarroDaoJDBC implements CarroDao{
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT carro.*,categoria.descricao as Descricao, categoria.precoDiario "
+					"SELECT *"
 					+ "FROM carro INNER JOIN categoria "
-					+ "ON carro.carroId = categoria.Id "
+					+ "ON carro.carroId = categoria.id "
 					+ "WHERE carroId = ? "
-					+ "ORDER BY categoria.modelo");
+					+ "ORDER BY carro.mdelo");
 			
 			st.setInt(1, categoria.getId());
 			

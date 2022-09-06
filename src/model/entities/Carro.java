@@ -2,6 +2,7 @@ package model.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import model.entities.enums.Cor;
@@ -114,9 +115,19 @@ public class Carro implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Carro [id=" + id + ", modelo=" + modelo + ", placa=" + placa + ", cor=" + cor + ", ano=" + ano
-				+ ", dataAquisicao=" + dataAquisicao + ", categoria=" + categoria + "]";
-	}
+StringBuilder stringBuilder = new StringBuilder();
+		
+		DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		stringBuilder.append("Id: " + this.getId());
+		stringBuilder.append(", Modelo: " + this.getModelo());
+		stringBuilder.append(" Placa: " + this.getPlaca());
+		stringBuilder.append(", Cor: " + this.getCor());
+		stringBuilder.append(", Ano: " + this.getAno());
+		stringBuilder.append(", Data Aquisicao: " + this.getDataAquisicao().format(formatacao));
+		stringBuilder.append(", " + this.getCategoria());
+		
+		return stringBuilder.toString();
 	
-
+	}
 }

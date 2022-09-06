@@ -10,13 +10,20 @@ public class Telefone implements Serializable{
 	private Integer id;
 	private String numero;
 	
+	private Cliente cliente;
+	
 	public Telefone() {
 		
 	}
 
-	public Telefone(String numero) {
+
+	public Telefone(Integer id, String numero, Cliente cliente) {
+		this.id = id;
 		this.numero = numero;
+		this.cliente = cliente;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -34,10 +41,24 @@ public class Telefone implements Serializable{
 		this.numero = numero;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(numero);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -48,12 +69,15 @@ public class Telefone implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Telefone other = (Telefone) obj;
-		return Objects.equals(numero, other.numero);
+		return Objects.equals(cliente, other.cliente) && Objects.equals(id, other.id)
+				&& Objects.equals(numero, other.numero);
 	}
+
 
 	@Override
 	public String toString() {
-		return "Telefone [numero=" + numero + "]";
+		return "Telefone [id=" + id + ", numero=" + numero + ", cliente=" + cliente + "]";
 	}
-
+	
+	
 }

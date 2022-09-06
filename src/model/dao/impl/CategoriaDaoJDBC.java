@@ -111,7 +111,7 @@ public class CategoriaDaoJDBC implements CategoriaDao{
 			rs = st.executeQuery();
 			if (rs.next()) {
 				Categoria obj = new Categoria();
-				obj.setId(rs.getInt("Id"));
+				obj.setId(rs.getInt("id"));
 				obj.setDescricao(rs.getString("descricao"));
 				obj.setPrecoPorDia(rs.getDouble("precoDiario"));
 				return obj;
