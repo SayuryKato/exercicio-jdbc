@@ -114,7 +114,6 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 			st = conn.prepareStatement(
 					"SELECT * FROM locacao "
 							+ "WHERE id = ?");
-
 			st.setInt(1, id);
 
 			rs = st.executeQuery();
@@ -122,7 +121,9 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 
 				Carro dep1 = instantiateCarro(rs);
 				Cliente dep = instantiateCliente(rs);
+				System.out.println("teste!");
 				Locacao obj = instantiateLocacao(rs);
+				System.out.println("teste222!");
 				return obj;
 			}
 			return null;
@@ -136,7 +137,12 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 
 	private Locacao instantiateLocacao(ResultSet rs) throws SQLException {
 	
-	  Locacao obj = new Locacao(); obj.setId(rs.getInt("id"));
+	  Locacao obj = new Locacao();
+	  System.out.println("Batata1");
+	  System.out.println(rs.getInt("id"));
+	  System.out.println("Batata2");
+	  obj.setId(rs.getInt("id"));
+	  
 	  obj.setDataRetirada(rs.getTimestamp("dataRetirada").toLocalDateTime());
 	  obj.setDataDevolucao(rs.getTimestamp("dataDevolucao").toLocalDateTime());
 	  Integer porcentagem = rs.getInt("porcentagem"); 

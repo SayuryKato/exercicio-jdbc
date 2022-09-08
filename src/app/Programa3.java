@@ -347,28 +347,40 @@ public class Programa3 {
 
 			} else if (resposta_locacao.equals(2)) { // DEVOLUCAO
 				System.out.println("Digite o ID da locacao");
-				sc = new Scanner(System.in);
 				Integer id_edit_loc = sc.nextInt();
+				sc = new Scanner(System.in);
 				System.out.print("Digite a data Devolucao (DD/MM/YYYY HH:mm) ");
 				LocalDateTime data_Devolu = LocalDateTime.parse(sc.nextLine(), fmt2);
-				Categoria dep = categoriaDao.findById(id_edit_loc);
-				Double preco_porDia = dep.getPrecoPorDia();
-				System.out.println(preco_porDia);
-
+				
+				System.out.println("novo");
 				newLocacao = locacaoDao.findById(id_edit_loc);
+				newLocacao.setDataDevolucao(data_Devolu);
+				locacaoDao.update(newLocacao);
+				System.out.println("Atualizado com sucesso!");
+				
+				newCliente = new Cliente(id_edit_loc, null, null, null);
+				list4 = locacaoDao.findByCliente(newCliente);
+				for (Locacao obj : list4) {
+					System.out.println(obj);
+			
+				}
 				
 				/*
-				 * newLocacao.setDataDevolucao(data_Devolu); clienteDao.update(newLocacao);
+				 * Categoria dep = categoriaDao.findById(id_edit_loc); Double preco_porDia =
+				 * dep.getPrecoPorDia(); System.out.println(preco_porDia);
 				 */
+
+				
+				
 
 			}
 
-			else if (resposta_locacao.equals(3)) { // error
+			else if (resposta_locacao.equals(3)) { // Listar todos
 				list4 = locacaoDao.findAll();
 				for (Locacao obj : list4) {
 					System.out.println(obj);
 				}
-			} else if (resposta_locacao.equals(4)) { // error
+			} else if (resposta_locacao.equals(4)) { // Listar por cliente
 				System.out.println("Digite ID da locacao");
 				Integer numer_id = sc.nextInt();
 				newCliente = new Cliente(numer_id, null, null, null);
