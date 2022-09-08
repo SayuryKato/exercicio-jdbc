@@ -16,7 +16,7 @@ public class Locacao implements Serializable{
 	
 	private Cliente cliente;
 	private Carro carro;
-	private LoacacaoDiaria locacaoDiaria;
+	private LocacaoDiaria locacaoDiaria;
 	private LocacaoLongoPeriodo locacaoLongoPeriodo; 
 	
 	public Locacao() {
@@ -25,7 +25,7 @@ public class Locacao implements Serializable{
 	
 	
 	public Locacao(Integer id, LocalDateTime dataRetirada, LocalDateTime dataDevolucao, Cliente cliente, Carro carro,
-			LoacacaoDiaria locacaoDiaria, LocacaoLongoPeriodo locacaoLongoPeriodo) {
+			LocacaoDiaria locacaoDiaria, LocacaoLongoPeriodo locacaoLongoPeriodo) {
 		this.id = id;
 		this.dataRetirada = dataRetirada;
 		this.dataDevolucao = dataDevolucao;
@@ -80,11 +80,11 @@ public class Locacao implements Serializable{
 		this.carro = carro;
 	}
 	
-	public LoacacaoDiaria getLocacaoDiaria() {
+	public LocacaoDiaria getLocacaoDiaria() {
 		return locacaoDiaria;
 	}
 
-	public void setLocacaoDiaria(LoacacaoDiaria locacaoDiaria) {
+	public void setLocacaoDiaria(LocacaoDiaria locacaoDiaria) {
 		this.locacaoDiaria = locacaoDiaria;
 	}
 	public LocacaoLongoPeriodo getLocacaoLongoPeriodo() {

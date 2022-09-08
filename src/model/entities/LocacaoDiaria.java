@@ -1,17 +1,16 @@
 package model.entities;
 
-
-public class LoacacaoDiaria extends Locacao{
+public class LocacaoDiaria extends Locacao{
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer diasPrevisto;
 	
 	
-	public LoacacaoDiaria() {
+	public LocacaoDiaria() {
 
 	}
-	public LoacacaoDiaria(Integer diasPrevisto) {
+	public LocacaoDiaria(Integer diasPrevisto) {
 		super();
 		this.diasPrevisto = diasPrevisto;
 	}
@@ -27,12 +26,14 @@ public class LoacacaoDiaria extends Locacao{
 		return "LoacacaoDiaria [diasPrevisto=" + diasPrevisto + "]";
 	}
 	
-//	public Integer diasPrevistoDevolucao() {
-//		Duration diferenca = Duration.between(getDataRetirada().atStartOfDay(),getDataDevolucao().atStartOfDay());
-//		int dias = (int) diferenca.toDays();
-//		return dias;
-//	}
-
+	/*
+	 * public Integer diasPrevistoDevolucao() { Duration diferenca =
+	 * Duration.between(getDataRetirada().atStartOfDay(),getDataDevolucao().
+	 * atStartOfDay()); // int dias = (int) diferenca.toDays(); // return dias; // }
+	 * 
+	 * }
+	 */
+	 
 	
 	
 	

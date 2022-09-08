@@ -2,14 +2,14 @@ package model.dao;
 
 import java.util.List;
 
-import model.entities.LoacacaoDiaria;
+import model.entities.LocacaoDiaria;
 
 public interface LocacaoDiariaDao {
 	
-	void insert(LoacacaoDiaria obj);
-	void update(LoacacaoDiaria obj);
+	void insert(LocacaoDiaria obj);
+	void update(LocacaoDiaria obj);
 	void deleteById(Integer id);
-	LoacacaoDiaria findById(Integer id);
-	List<LoacacaoDiaria> findAll();
+	LocacaoDiaria findById(Integer id);
+	List<LocacaoDiaria> findAll();
 
 }
